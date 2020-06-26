@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import TOC from "./components/TOC";
-import Content from "./components/Content";
-import Subject from "./components/Subject";
+import TOC from "./Components/TOC";
+import ReadContent from "./Components/ReadContent";
+import Subject from "./Components/Subject";
+import Control from "./Components/Control";
+import CreateContent from "./Components/CreateContent";
 
 class App extends Component {
   constructor(props) {
@@ -21,12 +23,14 @@ class App extends Component {
   } //그리고 그 렌더함수 하위에 있는 컴포넌트도 각자 싹 호출됨. 즉 화면이 다시 그려짐.
 
   render() {
-    console.log("App render");
+    //console.log("App render");
     var _title = null;
     var _desc = null;
+    var _article = null;
     if (this.state.mode === "welcome") {
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
+      _article = <ReadContent title={_title} desc={_desc} />;
     } else if (this.state.mode === "read") {
       var i = 0;
       while (i < this.state.content.length) {
@@ -38,6 +42,16 @@ class App extends Component {
         }
         i = i + 1;
       }
+      _article = <ReadContent title={_title} desc={_desc} />;
+    } else if (this.state.mode === "create") {
+      _article = (
+        <CreateContent
+          onSubmit={(_title, _desc) => {
+            //add content to this.state.contents
+            console.log(_title, _desc);
+          }}
+        />
+      );
     }
     return (
       <div className="App">
@@ -54,7 +68,13 @@ class App extends Component {
           }} //위에 number로 인해 id가 원래 문자 였는데 숫자로 됨.
           data={this.state.content}
         />
-        <Content title={_title} desc={_desc} />
+        <Control //onChangeMode가 호출될때 인자를 받아야지
+          //_mode여기에 각종 create, update등등 들어옴
+          onChangeMode={(_mode) => {
+            this.setState({ mode: _mode });
+          }}
+        />
+        {_article}
       </div> //어떤 HTML을 그릴건지 결정하는 함수가 render
     );
   }
