@@ -13,7 +13,6 @@ class CreateContent extends Component {
             //debugger;
             this.props.onSubmit(e.target.title.value, e.target.desc.value);
             //첫번쨰 두번쨰가 APP.js 의 onSubmit={(_title, _desc) 로 차례대로 가는거.
-            alert("submit");
           }}
         >
           <p>
