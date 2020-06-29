@@ -15,7 +15,7 @@ class App extends Component {
     this.max_content_id = 3;
     this.state = {
       mode: "welcome",
-      selected_content_id: 2,
+      selected_content_id: 1,
       subject: { title: "web", sub: "world wide web" },
       welcome: { title: "welcome", desc: "Hello , React!!!" },
       content: [
@@ -111,7 +111,8 @@ class App extends Component {
             this.setState({ mode:"welcome", content:_content})
             alert("Completed Delete")
           }} else {
-          this.setState({ mode: _mode });}}}/>
+          this.setState({ mode: _mode });
+        }}}/>
         {/* //onChangeMode가 호출될때 인자를 받아야지
         //_mode여기에 각종 create, update등등 들어옴 */} 
         {this.getContent()}

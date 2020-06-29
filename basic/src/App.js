@@ -20,8 +20,7 @@ class App extends Component {
     }; //리액트에서는 state의 값이 바뀌면, 그 state를 가지고 있는 컴포넌트 렌더함수가 다시 호출됨
   } //그리고 그 렌더함수 하위에 있는 컴포넌트도 각자 싹 호출됨. 즉 화면이 다시 그려짐.
 
-  render() {
-    console.log("App render");
+  render() { console.log("App render");
     var _title = null;
     var _desc = null;
     if (this.state.mode === "welcome") {
@@ -41,19 +40,11 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Subject
-          title={this.state.subject.title}
-          sub={this.state.subject.sub}
-          onChangePage={() => {
-            this.setState({ mode: "welcome" });
-          }}
-        />
-        <TOC
-          onChangePage={(id) => {
-            this.setState({ mode: "read", selected_content_id: Number(id) });
+        <Subject title={this.state.subject.title} sub={this.state.subject.sub}
+                 onChangePage={() => {this.setState({ mode: "welcome" });}} />
+        <TOC onChangePage={(id) => {this.setState({ mode: "read", selected_content_id: Number(id) });
           }} //위에 number로 인해 id가 원래 문자 였는데 숫자로 됨.
-          data={this.state.content}
-        />
+          data={this.state.content}/>
         <Content title={_title} desc={_desc} />
       </div> //어떤 HTML을 그릴건지 결정하는 함수가 render
     );
