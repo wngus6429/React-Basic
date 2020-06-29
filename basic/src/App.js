@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import TOC from "./components/TOC";
-import Content from "./components/Content";
-import Subject from "./components/Subject";
+import TOC from "./Components/TOC";
+import Content from "./Components/Content";
+import Subject from "./Components/Subject";
 
 class App extends Component {
   constructor(props) {
