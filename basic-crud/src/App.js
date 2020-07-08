@@ -10,7 +10,8 @@ import UpdateContent from "./Components/UpdateContent";
 
 class App extends Component {
   constructor(props) {
-    //컴포넌트가 실행될때 , constructor 가 존재하면 초기화를 담당,
+    //컴포넌트가 실행될때 , constructor 가 존재하면 랜더 전에 실행, 초기화를 담당,
+    //state를 위해서 꼭 constructor를 적어야 하는게 아님.
     super(props);
     this.max_content_id = 3;
     this.state = {
@@ -94,7 +95,8 @@ class App extends Component {
           onChangePage={() => { this.setState({ mode: "welcome" }); }}/>
         {/* 원본을 교체한거라 보면됨 */}
         <TOC onChangePage={(id) => {this.setState({ mode: "read", selected_content_id: Number(id) });}} 
-            data={this.state.content} />
+            data={this.state.content}/> 
+            {/* 이걸로 TOC에 데이터 전달 */}
         {/* //위에 number로 인해 id가 원래 문자 였는데 숫자로 됨. */}
         <Control onChangeMode={(_mode) => {
           if(_mode === "delete"){

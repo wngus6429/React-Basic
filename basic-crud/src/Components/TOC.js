@@ -1,3 +1,5 @@
+/** @format */
+
 import React, { Component } from "react";
 
 class TOC extends Component {
@@ -24,7 +26,9 @@ class TOC extends Component {
     var i = 0;
     while (i < data.length) {
       lists.push(
+        //밑에 key 안 넣어주면 콘솔에서 넣어달라고 에러뜸.
         <li key={data[i].id}>
+          　
           <a
             href={"/content/" + data[i].id}
             data-id={data[i].id}
